@@ -1,15 +1,12 @@
 use rocket::launch;
 use rocket::routes;
-use rocket::*;
 
-mod domain;
-
-#[get("/")]
-async fn index() -> &'static str {
-    "Hello, world!"
+pub mod domain;
+pub mod use_case {
+    pub mod user;
 }
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    rocket::build().mount("/", routes![use_case::user::get_user])
 }
