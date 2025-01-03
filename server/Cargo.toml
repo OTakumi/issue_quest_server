@@ -1,0 +1,10 @@
+[package]
+name = "issue_quest"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rocket = { version = "0.5.1", features = ["secrets", "json"] }
+diesel = { version = "2.2.6", features = ["postgres", "chrono"] }
+dotenvy = "0.15"
+chrono = { version = "0.4", features = ["serde"] }
