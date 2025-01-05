@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 256mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: issue-quest
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  app:
+    image: issue-quest
+    restart: always
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  db-data:
