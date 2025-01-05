@@ -1,3 +1,6 @@
+use rocket::get;
+use rocket::serde::json::Json;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -7,9 +10,6 @@ pub struct GetUser {
     pub name: String,
     pub email: String,
 }
-
-use rocket::get;
-use rocket::serde::json::Json;
 
 #[get("/user")]
 pub fn get_user() -> Json<GetUser> {
