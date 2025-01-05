@@ -12,7 +12,7 @@ pub struct GetUser {
 }
 
 #[get("/user")]
-pub fn get_user() -> Json<GetUser> {
+pub fn get_by_id() -> Json<GetUser> {
     Json(GetUser {
         id: 1,
         name: "John Doe".to_string(),
