@@ -1,12 +1,27 @@
 use rocket::launch;
 use rocket::routes;
 
-pub mod domain;
-pub mod use_case {
+mod domain {
     pub mod user;
 }
 
+mod repository {
+    pub mod user_repository;
+}
+
+mod controller {
+    pub mod healthcheck;
+    pub mod user;
+}
+
+mod usecase {
+    pub mod create_user;
+    pub mod get_user;
+}
+
 #[launch]
-fn rocket() -> _ {
-    rocket::build().mount("/", routes![use_case::user::get_user])
+async fn rocket() -> _ {
+    rocket::build()
+        .mount("/", routes![controller::healthcheck::healthcheck])
+        .mount("/", routes![controller::user::get_user])
 }
