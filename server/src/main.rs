@@ -1,16 +1,9 @@
 use rocket::launch;
 use rocket::routes;
 
+use controller::{healthcheck, user};
+
 mod domain {
-    pub mod user;
-}
-
-mod repository {
-    pub mod user_repository;
-}
-
-mod controller {
-    pub mod healthcheck;
     pub mod user;
 }
 
@@ -22,6 +15,6 @@ mod usecase {
 #[launch]
 async fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![controller::healthcheck::healthcheck])
-        .mount("/", routes![controller::user::get_user])
+        .mount("/", routes![healthcheck::healthcheck])
+        .mount("/", routes![user::get_by_id])
 }
